@@ -1,0 +1,341 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API of the Project Backend - Geração Tech",
+    "version": "1.0.0",
+    "description": "This API allows for the management of users, categories, and products.",
+    "contact": {
+      "name": "Developer Joao Max",
+      "email": "joaomaxdev@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/v1",
+      "description": "Local server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Users",
+      "description": "Operations related to users"
+    },
+    {
+      "name": "Categories",
+      "description": "Operations related to categories"
+    },
+    {
+      "name": "Products",
+      "description": "Operations related to products"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Create User",
+        "description": "Creates a new user.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "firstname": { "type": "string" },
+                  "surname": { "type": "string" },
+                  "email": { "type": "string" },
+                  "password": { "type": "string" },
+                  "confirmPassword": { "type": "string" }
+                },
+                "required": ["firstname", "surname", "email", "password", "confirmPassword"]
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Token generated for authentication."
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "User ID",
+          "schema": { "type": "string" }
+        }
+      ],
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get User",
+        "description": "Retrieves a user by ID.",
+        "responses": {
+          "200": {
+            "description": "User details"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Users"],
+        "summary": "Update User",
+        "description": "Updates an existing user.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "firstname": { "type": "string" },
+                  "surname": { "type": "string" },
+                  "email": { "type": "string" }
+                },
+                "required": ["firstname", "surname", "email"]
+              }
+            }
+          },
+          "responses": {
+            "204": {
+              "description": "No Content"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Users"],
+        "summary": "Delete User",
+        "description": "Deletes a user.",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/categories": {
+      "post": {
+        "tags": ["Categories"],
+        "summary": "Create Category",
+        "description": "Creates a new category.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "slug": { "type": "string" },
+                  "use_in_menu": { "type": "boolean" }
+                },
+                "required": ["name", "slug"]
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Created"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Categories"],
+        "summary": "Get All Categories",
+        "description": "Retrieves all categories.",
+        "responses": {
+          "200": {
+            "description": "List of categories"
+          }
+        }
+      }
+    },
+    "/categories/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "Category ID",
+          "schema": { "type": "string" }
+        }
+      ],
+      "get": {
+        "tags": ["Categories"],
+        "summary": "Get Category by ID",
+        "description": "Retrieves a category by ID.",
+        "responses": {
+          "200": {
+            "description": "Category details"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Categories"],
+        "summary": "Update Category",
+        "description": "Updates an existing category.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "slug": { "type": "string" },
+                  "use_in_menu": { "type": "boolean" }
+                },
+                "required": ["name", "slug"]
+              }
+            }
+          },
+          "responses": {
+            "204": {
+              "description": "No Content"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Categories"],
+        "summary": "Delete Category",
+        "description": "Deletes a category.",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/products": {
+      "post": {
+        "tags": ["Products"],
+        "summary": "Create Product",
+        "description": "Creates a new product.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "enabled": { "type": "boolean" },
+                  "name": { "type": "string" },
+                  "slug": { "type": "string" },
+                  "stock": { "type": "integer" },
+                  "description": { "type": "string" },
+                  "price": { "type": "number" },
+                  "category_ids": {
+                    "type": "array",
+                    "items": { "type": "integer" }
+                  },
+                  "images": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  },
+                  "options": {
+                    "type": "array",
+                    "items": { "type": "object" }
+                  }
+                },
+                "required": ["enabled", "name", "slug", "stock", "price", "category_ids"]
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Created"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Products"],
+        "summary": "Get All Products",
+        "description": "Retrieves all products.",
+        "responses": {
+          "200": {
+            "description": "List of products"
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "Product ID",
+          "schema": { "type": "string" }
+        }
+      ],
+      "get": {
+        "tags": ["Products"],
+        "summary": "Get Product by ID",
+        "description": "Retrieves a product by ID.",
+        "responses": {
+          "200": {
+            "description": "Product details"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Products"],
+        "summary": "Update Product",
+        "description": "Updates an existing product.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "enabled": { "type": "boolean" },
+                  "name": { "type": "string" },
+                  "slug": { "type": "string" },
+                  "stock": { "type": "integer" },
+                  "description": { "type": "string" },
+                  "price": { "type": "number" },
+                  "category_ids": {
+                    "type": "array",
+                    "items": { "type": "integer" }
+                  },
+                  "images": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  },
+                  "options": {
+                    "type": "array",
+                    "items": { "type": "object" }
+                  }
+                },
+                "required": ["enabled", "name", "slug", "stock", "price", "category_ids"]
+              }
+            }
+          },
+          "responses": {
+            "204": {
+              "description": "No Content"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Products"],
+        "summary": "Delete Product",
+        "description": "Deletes a product.",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    }
+  }
+}
