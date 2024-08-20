@@ -37,9 +37,9 @@ try {
     .readdirSync(__dirname)
     .filter(file => {
       return (
-        file.indexOf('.') !== 0 &&          // Exclui arquivos ocultos
+        !file.startsWith('.') &&          // Exclui arquivos ocultos
         file !== basename &&                // Exclui o próprio arquivo index.js
-        file.slice(-3) === '.js' &&         // Inclui apenas arquivos JavaScript
+        file.endsWith('.js') &&         // Inclui apenas arquivos JavaScript
         file.indexOf('.test.js') === -1     // Exclui arquivos de teste
       );
     })
