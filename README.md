@@ -2,6 +2,11 @@
 
 Welcome to the Project Backend developed as part of the Geração Tech program. This project provides a robust backend API with functionalities for user management, product handling, and category management.
 
+## Documentation
+
+- [English Version](README.md)
+- [Versão em Português](README-ptbr.md)
+
 ## Table of Contents 📚
 
 - [Getting Started](#getting-started)

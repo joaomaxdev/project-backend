@@ -2,6 +2,11 @@
 
 Bem-vindo ao Project Backend desenvolvido como parte do programa Geração Tech. Este projeto fornece uma API robusta para gerenciamento de usuários, produtos e categorias.
 
+## Documentação
+
+- [Versão em Inglês](README.md)
+- [Versão em Português](README-ptbr.md)
+
 ## Sumário 📚
 
 - [Introdução](#introdução)
