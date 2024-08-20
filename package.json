@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "createdb": "node src/models/create-database.js", //cria o bacnco
+    "createdb": "node src/models/create-database.js",
     "test": "jest"
   },
   "keywords": [],
