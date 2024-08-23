@@ -14,10 +14,16 @@ module.exports = {
           model: 'Products',
           key: 'id'
         },
-        onDelete: 'CASCADE'
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        allowNull: false
       },
-      imageUrl: {
+      type: {
         type: Sequelize.STRING,
+        allowNull: false
+      },
+      content: {
+        type: Sequelize.TEXT('long'),
         allowNull: false
       },
       createdAt: {
@@ -30,6 +36,7 @@ module.exports = {
       }
     });
   },
+  
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('ProductImages');
   }

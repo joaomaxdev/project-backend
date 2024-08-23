@@ -8,7 +8,9 @@ module.exports = {
           model: 'Products',
           key: 'id'
         },
-        onDelete: 'CASCADE'
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        allowNull: false
       },
       categoryId: {
         type: Sequelize.INTEGER,
@@ -16,7 +18,9 @@ module.exports = {
           model: 'Categories',
           key: 'id'
         },
-        onDelete: 'CASCADE'
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
@@ -28,6 +32,7 @@ module.exports = {
       }
     });
   },
+  
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('ProductCategories');
   }

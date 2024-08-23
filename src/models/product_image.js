@@ -50,7 +50,7 @@ module.exports = (sequelize) => {
       // Configurações adicionais para o modelo
       sequelize,              // Instância do Sequelize para conectar o modelo ao banco de dados
       modelName: 'ProductImage', // Nome do modelo
-      tableName: 'product_images', // Nome da tabela no banco de dados
+      tableName: 'ProductImage', // Nome da tabela no banco de dados
       timestamps: true,     // Adiciona colunas de timestamps (createdAt e updatedAt)
     }
   );

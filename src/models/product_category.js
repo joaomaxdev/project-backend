@@ -43,7 +43,7 @@ module.exports = (sequelize) => {
       // Configurações adicionais para o modelo
       sequelize,              // Instância do Sequelize para conectar o modelo ao banco de dados
       modelName: 'ProductCategory', // Nome do modelo
-      tableName: 'product_categories', // Nome da tabela no banco de dados
+      tableName: 'ProductCategories', // Nome da tabela no banco de dados
       timestamps: false,     // Não adiciona colunas de timestamps (createdAt e updatedAt)
     }
   );

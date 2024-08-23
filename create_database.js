@@ -1,33 +1,36 @@
-// Importa os módulos necessários
+// Importando as bibliotecas necessárias
 const mysql = require('mysql2/promise');
 const dotenv = require('dotenv');
 
-// Carrega as variáveis de ambiente do arquivo .env
+// Carregando as variáveis de ambiente do arquivo .env
 dotenv.config();
 
-// Função assíncrona para criar o banco de dados
-async function createDatabase() {
+// Conexão ao banco de dados
+async function createDatabases() {
+  // Cria uma conexão com o banco de dados MySQL usando as credenciais do .env
+  const connection = await mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+  });
+
   try {
-    // Conecta ao servidor MySQL usando as variáveis de ambiente
-    const connection = await mysql.createConnection({
-      host: process.env.DB_HOST,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-    });
+    // Criação dos bancos de dados
+    await connection.query('CREATE DATABASE IF NOT EXISTS project_root;');
+    console.log('Database project_root created successfully.');
 
-    // Cria o banco de dados se ele não existir
-    await connection.query(`CREATE DATABASE IF NOT EXISTS \`${process.env.DB_NAME}\`;`);
+    await connection.query('CREATE DATABASE IF NOT EXISTS project_root_test;');
+    console.log('Database project_root_test created successfully.');
 
-    console.log(`Banco de dados '${process.env.DB_NAME}' criado com sucesso ou já existente.`);
-
-    // Fecha a conexão
+    await connection.query('CREATE DATABASE IF NOT EXISTS project_root_production;');
+    console.log('Database project_root_production created successfully.');
+  } catch (err) {
+    console.error('Error creating databases:', err.message);
+  } finally {
+    // Fechando a conexão com o banco de dados
     await connection.end();
-  } catch (error) {
-    // Exibe o erro no console, caso ocorra
-    console.error('Erro ao criar o banco de dados:', error);
-    process.exit(1);
   }
 }
 
-// Executa a função para criar o banco de dados
-createDatabase();
+// Executando a função para criar os bancos de dados
+createDatabases();

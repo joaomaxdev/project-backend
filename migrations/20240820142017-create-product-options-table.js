@@ -14,14 +14,28 @@ module.exports = {
           model: 'Products',
           key: 'id'
         },
-        onDelete: 'CASCADE'
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        allowNull: false
       },
-      optionName: {
+      title: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      optionValue: {
+      shape: {
         type: Sequelize.STRING,
+        allowNull: true
+      },
+      radius: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      type: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      values: {
+        type: Sequelize.JSON,
         allowNull: false
       },
       createdAt: {
@@ -34,6 +48,7 @@ module.exports = {
       }
     });
   },
+  
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('ProductOptions');
   }

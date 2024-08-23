@@ -12,6 +12,16 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      slug: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true
+      },
+      use_in_menu: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: true
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
